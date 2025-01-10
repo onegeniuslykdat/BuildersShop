@@ -1,23 +1,73 @@
 ﻿@page "/"
+@using BlazorAppWithCosmosDb.Data;
+@inject IProductService productService;
 
 <PageTitle>Home</PageTitle>
 
 <h1 class="text-center">Welcome to your one stop platform for all building materials</h1>
 
-<div class="container">
-    <div class="row">
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+@if(isLoading)
+{
+    <p class="text-center">Products loading, please wait...</p>
+} 
+else
+{
+    if(hasError)
+    {
+        <p class="text-center text-danger">Failed to load products. Please try again</p>
+    }
+    else
+    {
+        if(products == null || products.Count == 0)
+        {
+            <p class="text-center">No products available. Check back later</p>
+        }
+        else {
+            <div class="container">
+                <div class="card" style="width: 18rem;">
+                    @foreach (var product in products)
+                    {
+                        <img src=@product.ProductUrl class="card-img-top" alt=@product.ProductDescription>
+                        <div class="card-body">
+                            <h5 class="card-title">@product.ProductName</h5>
+                            <p class="card-text">
+                                @product.ProductDescription
+                            </p>
+                            @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+                        </div>
+                    }
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+        }       
+    }  
+}
+
 
 
 @code {
+    private List<Product>? products;
 
+    private bool isLoading = true;
+
+    private bool hasError = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            this.products = await productService.GetProducts()!;
+
+            await Task.Delay(1000);
+        }
+        catch (Exception)
+        {
+            hasError = true;
+        }
+        isLoading = false;
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        return base.OnAfterRenderAsync(firstRender);
+    }
 }
