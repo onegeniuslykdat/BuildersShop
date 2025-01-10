@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0DAOFWXgaJMQy9KdT3g9ob1PoyD3ToqkD43pi+XSDwlEnaK1tG69fW7AP2EwQZrgg/Hrfu7+yCk4pkl1xvvpBw==",
+  "dgSpecHash": "3dR5HJXVF2MZxNdJ480uk4HiY2OZWpqQuHYp3aELB86bXFiw2vPG3KriSCthurchlgAFjNiw9VEsGKi+KedFQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\AVeryPrivatePerson\\source\\repos\\Blazor Apps\\BlazorAppWithCosmosDb\\BuildersShop\\src\\BlazorAppWithCosmosDb\\BlazorAppWithCosmosDb.csproj",
+  "projectFilePath": "C:\\Users\\AVeryPrivatePerson\\source\\repos\\Blazor Apps\\BlazorAppWithCosmosDb\\BuildersShop\\src\\BlazorAppWithCosmosDb.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
